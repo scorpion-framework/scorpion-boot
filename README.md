@@ -1,15 +1,15 @@
-Scorpion
+Scorpion Boot
 <img align="right" alt="Logo" width="100" src="https://i.imgur.com/A7ozW1W.png">
 =======
 
-[![DUB Package](https://img.shields.io/dub/v/scorpion.svg)](https://code.dlang.org/packages/scorpion)
+[![DUB Package](https://img.shields.io/dub/v/scorpion-boot.svg)](https://code.dlang.org/packages/scorpion-boot)
 
-Application maker for the [Scorpion Framework](https://github.com/scorpion-framwork/scorpion)
+Application maker for the [Scorpion Framework](https://github.com/scorpion-framework/scorpion)
 
 Usage
 =====
 
-To use scorpion-boot simply add it your dub.sdl or dub.json as a dependency
+To use scorpion-boot simply add it your `dub.sdl` or `dub.json` as a dependency:
 
 ```sdl
 name "my-application"
