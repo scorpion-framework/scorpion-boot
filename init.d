@@ -13,7 +13,7 @@ import std.string;
 
 import sdlang;
 
-enum libs = ["diet-ng", "kiss", "lighttp", "my-ip", "shark", "xbuffer"];
+enum libs = ["asdf", "diet-ng", "libasync", "lighttp", "memutils", "my-ip", "scorpion", "shark", "urld", "xbuffer"];
 
 void main(string[] args) {
 
@@ -62,7 +62,7 @@ void main(string[] args) {
 		}
 	}
 	
-	string[] modules;
+	string[] modules = ["scorpion.welcome"];
 	
 	foreach(path ; sources) {
 		foreach(string file ; dirEntries(path, SpanMode.breadth)) {
@@ -73,7 +73,7 @@ void main(string[] args) {
 					data = data[module_..$];
 					immutable semicolon = data.indexOf(";");
 					if(semicolon != -1) {
-						modules ~= "registerModule!\"" ~ data[6..semicolon].strip ~ "\"();";
+						modules ~= data[6..semicolon].strip;
 					}
 				}
 			}
@@ -92,7 +92,9 @@ void main(string[] args) {
 		"import scorpion.starter : start;",
 		"void main(string[] args){"
 	];
-	data ~= modules;
+	foreach(m ; modules) {
+		data ~= "{static import " ~ m ~ ";registerModule!(" ~ m ~ ");}";
+	}
 	data ~= "start(args); }";
 	write(".scorpion/starter.d", join(data, newline));
 
