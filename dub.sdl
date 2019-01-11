@@ -3,8 +3,8 @@ description "Executable maker for scorpion applications"
 license "MIT"
 targetType "none"
 
-postGenerateCommands "if not exist .scorpion mkdir .scorpion" "copy $SCORPION_BOOT_PACKAGE_DIR\\init.d .scorpion\\init.d" "$DUB --single .scorpion/init.d" "$DUB build --single --arch=$ARCH --build=$BUILD_TYPE .scorpion/starter.d" "copy .scorpion\\exe\\* ." platform="windows"
-postGenerateCommands "mkdir -p .scorpion" "cp $SCORPION_BOOT_PACKAGE_DIR/init.d .scorpion/init.d" "$DUB --single .scorpion/init.d" "$DUB build --single --arch=$ARCH --build=$BUILD_TYPE .scorpion/starter.d" "cp .scorpion/exe/* ." platform="posix"
+postGenerateCommands "if not exist .scorpion mkdir .scorpion" "copy $SCORPION_BOOT_PACKAGE_DIR\\init.d .scorpion\\init.d /D /Y" "$DUB --single .scorpion/init.d" "$DUB build --single --arch=$ARCH --build=$BUILD_TYPE .scorpion/starter.d" "copy .scorpion\\exe\\* ." platform="windows"
+postGenerateCommands "mkdir -p .scorpion" "cp -u $SCORPION_BOOT_PACKAGE_DIR/init.d .scorpion/init.d" "$DUB --single .scorpion/init.d" "$DUB build --single --arch=$ARCH --build=$BUILD_TYPE .scorpion/starter.d" "cp .scorpion/exe/* ." platform="posix"
 
 //postBuildCommands "if $DUB_RUN == \"TRUE\" ( .\\$DUB_PACKAGE.exe )" platform="windows"
 //postBuildCommands "if [ $DUB_RUN = \"TRUE\" ]; then ./$DUB_PACKAGE" platform="posix"

@@ -88,14 +88,14 @@ void main(string[] args) {
 		"dependency \"" ~ name ~ "\" path=\"..\"",
 		"+/",
 		"module scorpionstarter;",
-		"import scorpion.register : registerModule;",
-		"import scorpion.starter : start;",
-		"void main(string[] args){"
+		"import scorpion.bootstrap : ScorpionServer;",
+		"void main(string[] args){",
+		"ScorpionServer server=new ScorpionServer();"
 	];
 	foreach(m ; modules) {
-		data ~= "{static import " ~ m ~ ";registerModule!(" ~ m ~ ");}";
+		data ~= "{static import " ~ m ~ ";server.registerModule!(" ~ m ~ ");}";
 	}
-	data ~= "start(args); }";
+	data ~= "server.run(args); }";
 	write(".scorpion/starter.d", join(data, newline));
 
 }
